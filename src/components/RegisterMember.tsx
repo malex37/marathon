@@ -14,6 +14,10 @@ export default class RegisterMember extends React.Component<{}, RegisterMemberFo
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    private updateTeamMember() {
+
+    }
+
     handleSubmit(submitEvent: any) {
         let localStorageobj = localStorage.getItem('team');
         let team: Team = { members: [] }

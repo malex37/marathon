@@ -1,8 +1,22 @@
 import React from "react";
-function Sprint() {
-    return(<div>
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </div>);
-}
+import { DynamoConnector } from "../dataProviders/dbProvider";
 
-export default Sprint;
+export default class Sprint extends React.Component<{}, {sprintData: string}> {
+
+    constructor(props: React.ReactPropTypes) {
+        super(props);
+        this.state = {sprintData: ''};
+    }
+
+    render() {
+        return (
+            <div>
+                {this.state.sprintData}
+            </div>
+        );
+    }
+
+    async componentDidMount() {
+        this.setState({ sprintData: JSON.stringify(await DynamoConnector.getSprints()) });
+    }
+};
