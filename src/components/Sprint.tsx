@@ -1,5 +1,6 @@
 import React from "react";
-import { DynamoConnector } from "../dataProviders/dbProvider";
+import { DynamoConnector } from "../serviceProviders/dbProvider";
+import { checkAuth } from "../tools/AuthTools";
 
 export default class Sprint extends React.Component<{}, {sprintData: string}> {
 
@@ -17,6 +18,7 @@ export default class Sprint extends React.Component<{}, {sprintData: string}> {
     }
 
     async componentDidMount() {
-        this.setState({ sprintData: JSON.stringify(await DynamoConnector.getSprints()) });
+      checkAuth();
+      // this.setState({ sprintData: JSON.stringify(await DynamoConnector.getSprints()) });
     }
 };

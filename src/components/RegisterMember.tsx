@@ -19,13 +19,13 @@ export default class RegisterMember extends React.Component<{}, RegisterMemberFo
     }
 
     handleSubmit(submitEvent: any) {
-        let localStorageobj = localStorage.getItem('team');
+        let localStorageObj = localStorage.getItem('team');
         let team: Team = { members: [] }
-        if (localStorageobj === null) {
+        if (localStorageObj === null) {
             console.log('No team found, using empty team interface');
         } else {
-            console.log(`local storage obj ${localStorageobj}`);
-            team = JSON.parse(localStorageobj);
+            console.log(`local storage obj ${localStorageObj}`);
+            team = JSON.parse(localStorageObj);
         }
        
         if (!this.state || !this.state.name) {
@@ -40,7 +40,6 @@ export default class RegisterMember extends React.Component<{}, RegisterMemberFo
 
     handleChange(event: any) {
         this.setState({name: event.target.value });
-        // console.log(`Received change from ${JSON.stringify(event)}`);
     }
 
     render() {
