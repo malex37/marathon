@@ -9,8 +9,19 @@ import Sprint from "./Sprint";
 import Team from "./Team";
 import Stats from "./Stats"
 import Login from "./Login";
+import { checkAuth } from "../tools/AuthTools";
 
 export default class Main extends React.Component {
+  
+  // Initial setup
+  componentDidMount() {
+    checkAuth();
+  }
+
+  // In case an update is triggered. I'm expecting this to work for all child components so there's no need to add it to all mounts
+  componentDidUpdate() {
+    checkAuth();
+  }
     render() {
         return (<div>
             <Router>

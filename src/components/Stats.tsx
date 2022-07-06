@@ -4,7 +4,7 @@ import UserStats from "./display/userStats";
 
 export default class Stats extends React.Component {
     render() {
-      return <div className="center">
+      return <div className="flex flex-col">
         <UserStats></UserStats>
       </div>;
     };
