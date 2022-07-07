@@ -10,6 +10,7 @@ import Team from "./Team";
 import Stats from "./Stats"
 import Login from "./Login";
 import { checkAuth } from "../tools/AuthTools";
+import { Routes as AppRoutes } from "../Route";
 
 export default class Main extends React.Component {
   
@@ -23,7 +24,8 @@ export default class Main extends React.Component {
     checkAuth();
   }
     render() {
-        return (<div>
+        return (
+        <div className="flex flex-col">
             <Router>
                 <div className="navbar bg-base-100">
                     {
@@ -44,7 +46,9 @@ export default class Main extends React.Component {
                 <Routes>
                     <Route path="/login" element={<Login />} />
                     <Route path="/" element={<Stats />} />
-                    <Route path="/sprints" element={<Sprint />} />
+                    <Route path="/sprints">
+                      <Route path=":sprint" element={<Sprint sprintName=":sprint" />} />
+                    </Route>
                     <Route path="/team" element={<Team />} />
                 </Routes>
             </Router>

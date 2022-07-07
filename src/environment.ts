@@ -6,6 +6,7 @@ interface Environment {
   awsRegion: string;
   identityTokenStorageKey: string;
   identityClient: string;
+  disableLoginForDevelopment: boolean;
 }
 
 export const AppConfig: Environment = {
@@ -16,4 +17,5 @@ export const AppConfig: Environment = {
   identityClient: '54p2e979phpou3em40hvmiq4l3',
   awsRegion: 'us-east-1',
   identityTokenStorageKey: 'identityToken',
+  disableLoginForDevelopment: true,
 }

@@ -9,7 +9,7 @@ export function getToken(): string | undefined {
 }
 
 export function checkAuth(): void { 
-  if (!getToken()) {
+  if (!getToken() && !AppConfig.disableLoginForDevelopment) {
     console.log('No cognito token detected');
     window.location.assign(AppConfig.loginUrl);
   }

@@ -1,18 +1,23 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import { DynamoConnector } from "../serviceProviders/dbProvider";
 import { checkAuth } from "../tools/AuthTools";
 
-export default class Sprint extends React.Component<{}, {sprintData: string}> {
 
-    constructor(props: React.ReactPropTypes) {
+interface SprintViewState {
+  sprintName?: string;
+}
+export default class Sprint extends React.Component<SprintViewState, SprintViewState> {
+
+    constructor(props: SprintViewState) {
         super(props);
-        this.state = {sprintData: ''};
+        this.state = props;
     }
 
     render() {
         return (
             <div>
-                {this.state.sprintData}
+                {this.state.sprintName}
             </div>
         );
     }

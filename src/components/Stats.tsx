@@ -1,11 +1,11 @@
 import React from "react";
 import { checkAuth } from "../tools/AuthTools";
-import UserStats from "./display/userStats";
+import UserDashboard from "./display/UserDashboard";
 
 export default class Stats extends React.Component {
     render() {
       return <div className="flex flex-col">
-        <UserStats></UserStats>
+        <UserDashboard></UserDashboard>
       </div>;
     };
     

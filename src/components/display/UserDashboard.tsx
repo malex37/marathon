@@ -5,7 +5,7 @@ import SprintStatsRow from "./SprintStatsRow";
  * General stats for the user.
  * Sprints they belong to, project name general sprint data
  */
-export default class UserStats extends React.Component<{}, {}> {
+export default class UserDashboard extends React.Component<{}, {}> {
   render() {
     return <div className="overflow-x-auto center">
       <table className="table w-half">

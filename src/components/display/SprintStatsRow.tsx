@@ -22,14 +22,14 @@ export default class SprintStatsRow extends React.Component<SprintStatsRowProps,
     return(
     <tr className="hover">
       <td>{ this.props.projectName }</td>
-      <td>{ this.props.sprintName }</td>
+      <td><a className="link" href={`/sprints/${this.props.sprintName}`}>{ this.props.sprintName }</a></td>
       <td>
       <DateRange
         startDate={ this.props.sprintDateRange.startDate.toDateString() }
         endDate={ this.props.sprintDateRange.endDate.toDateString() }
       />
       </td>
-      <td>{this.props.teamName}</td>
+      <td><a href={`/team?teamName=${this.props.teamName}`}>{this.props.teamName}</a></td>
     </tr>
     );
   }
