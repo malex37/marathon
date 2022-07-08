@@ -4,7 +4,7 @@ import UserDashboard from "./display/UserDashboard";
 
 export default class Stats extends React.Component {
     render() {
-      return <div className="flex flex-col">
+      return <div className="flex flex-col items-center">
         <UserDashboard></UserDashboard>
       </div>;
     };
