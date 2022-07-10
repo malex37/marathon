@@ -17,5 +17,5 @@ export const AppConfig: Environment = {
   identityClient: '54p2e979phpou3em40hvmiq4l3',
   awsRegion: 'us-east-1',
   identityTokenStorageKey: 'identityToken',
-  disableLoginForDevelopment: true,
+  disableLoginForDevelopment: false,
 }

@@ -5,6 +5,7 @@ export function setToken(token: string): void {
 }
 
 export function getToken(): string | undefined {
+  console.log('AppConfig.identityTokenStorageKey', AppConfig.identityTokenStorageKey)
   return localStorage.getItem(AppConfig.identityTokenStorageKey) || undefined;
 }
 

@@ -16,8 +16,8 @@ export default class Login extends React.Component<{}, {}> {
       window.location.assign(AppConfig.loginUrl);
       return;
     }
-    setToken(JSON.stringify(token));
-    // DbProvider.init();
+    setToken(token);
+    DbProvider.init();
   }
 
   render() {
