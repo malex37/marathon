@@ -6,7 +6,7 @@ import { logger } from "../tools/logger";
 import { SprintModel } from '../models/SprintModel';
 
 
-export class DbProvider {
+export default class DbProvider {
     private static dbClient: DynamoDBClient;
 
     public static init() {
@@ -28,19 +28,9 @@ export class DbProvider {
           }
         }),
       });
-
-      console.log({
-          identityPoolId: AppConfig.identityPoolId,
-          logins: {
-            'cognito-idp.us-east-1.amazonaws.com/us-east-1_FU9OU6fgv': identityToken,
-          },
-          clientConfig: {
-            region: AppConfig.awsRegion,
-          }
-        })
     }
 
-    public async getSprints(): Promise<SprintModel[] | undefined> {
+    public static async getSprints(): Promise<SprintModel[] | undefined> {
       if(!DbProvider.dbClient) {
         DbProvider.init();
       }
@@ -55,5 +45,3 @@ export class DbProvider {
       });
     }
 }
-
-export const DynamoConnector = new DbProvider();

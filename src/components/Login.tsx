@@ -1,8 +1,9 @@
 import React from "react";
 import { AppConfig } from "../environment";
-import { DbProvider } from "../serviceProviders/dbProvider";
+import DbProvider from "../serviceProviders/dbProvider";
 import { setToken } from "../tools/AuthTools";
 import { logger } from "../tools/logger";
+import CognitoProvider from '../serviceProviders/cognitoProvider';
 
 export default class Login extends React.Component<{}, {}> {
   componentDidMount() {
@@ -18,6 +19,8 @@ export default class Login extends React.Component<{}, {}> {
     }
     setToken(token);
     DbProvider.init();
+    CognitoProvider.init();
+    CognitoProvider.getUser();
   }
 
   render() {

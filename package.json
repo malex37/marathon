@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@aws-sdk/client-cognito-identity-provider": "^3.118.1",
+    "@aws-sdk/client-cognito-identity-provider": "^3.121.0",
     "@aws-sdk/client-dynamodb": "^3.113.0",
     "@aws-sdk/credential-provider-cognito-identity": "^3.121.0",
     "@aws-sdk/credential-providers": "^3.121.0",
@@ -14,13 +14,13 @@
     "@types/react": "^18.0.11",
     "@types/react-dom": "^18.0.5",
     "daisyui": "^2.18.0",
+    "nth-check": ">=2.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
     "typescript": "^4.7.3",
-    "web-vitals": "^2.1.4",
-    "nth-check": ">=2.0.1"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

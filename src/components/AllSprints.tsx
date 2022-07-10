@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { checkAuth } from "../tools/AuthTools";
-import { DynamoConnector } from "../serviceProviders/dbProvider";
+import DbProvider from "../serviceProviders/dbProvider";
 import { SprintModel } from "../models/SprintModel";
 
 const AllSprints = () => {
@@ -9,11 +9,10 @@ const AllSprints = () => {
     checkAuth();
 
     async function fetchSprints() {
-      return await DynamoConnector.getSprints();
+      return await DbProvider.getSprints();
     }
 
     fetchSprints().then(data => {
-      console.log('data', data);
       setState(data);
     });
  }, [])
@@ -21,12 +20,12 @@ const AllSprints = () => {
   return (
     <div>
       List of all sprints
-      {state?.map(sprint => {
+      {state?.map((sprint, index) => {
         return (
-          <>
+          <Fragment key={index}>
             <div>Sprint Name: {sprint.name}</div>
             <div>team name: {sprint.team}</div>
-          </>
+          </Fragment>
         )
       })}
     </div>

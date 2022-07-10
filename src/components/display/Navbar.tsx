@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { routesConfig } from "../../Routes";
+import Avatar from "./Avatar";
 
 const links = routesConfig.filter(({ isNavLinkVisible }) => isNavLinkVisible);
 
@@ -18,7 +19,8 @@ const Navbar = () => (
       ))}
     </div>
     <div className="navbar-end" />
+    <Avatar firstName="John"  lastName="Doe" username="JonnyDoe" />
   </div>
-)
+);
 
 export default Navbar;
