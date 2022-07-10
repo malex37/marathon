@@ -1,20 +1,17 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { checkAuth } from "../tools/AuthTools";
 // import { DynamoConnector } from "../serviceProviders/dbProvider";
 
-const Sprint = () => {
+const AllSprints = () => {
   useEffect(() => {
     checkAuth();
   }, [])
 
-  const { sprint } = useParams();
-
   return (
     <div>
-      {sprint}
+      List of all sprints
     </div>
   )
 }
 
-export default Sprint;
+export default AllSprints;
