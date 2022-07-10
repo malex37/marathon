@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { routesConfig } from "../../Routes";
 
-const links = routesConfig.filter(({ isNavLinkVisible }) => Boolean(isNavLinkVisible));
+const links = routesConfig.filter(({ isNavLinkVisible }) => isNavLinkVisible);
 
 const Navbar = () => (
   <div className="navbar bg-base-100">
