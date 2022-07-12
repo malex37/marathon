@@ -8,6 +8,8 @@ interface SprintStatsRowProps {
   sprintName: string;
   sprintDateRange: DateRangeType;
   teamName: string;
+  totalPoints: number;
+  completedPoints: number;
 }
 
 export default class SprintStatsRow extends React.Component<SprintStatsRowProps, {}> {
@@ -20,6 +22,7 @@ export default class SprintStatsRow extends React.Component<SprintStatsRowProps,
     }
   }
   render() {
+    const completionPercentage = (this.props.completedPoints / this.props.totalPoints) * 100;
     return(
     <tr className="hover">
       <td>{ this.props.projectName }</td>
@@ -31,6 +34,9 @@ export default class SprintStatsRow extends React.Component<SprintStatsRowProps,
       />
       </td>
       <td><Link to={`/team?teamName=${this.props.teamName}`}>{this.props.teamName}</Link></td>
+      <td>
+        <div className="radial-progress" style={({['--value']: completionPercentage}) as any}>{completionPercentage}%</div>
+      </td>
     </tr>
     );
   }
