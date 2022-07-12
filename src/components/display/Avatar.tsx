@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 export type AvatarProps = {
     firstName?: string;
     lastName?: string;
@@ -16,13 +18,20 @@ const getInitials = ({ firstName, lastName, username }: AvatarProps) => {
 }
 
 const Avatar = (props: AvatarProps) => (
-  <div className="avatar placeholder p-4">
-    <div className="bg-neutral-focus text-neutral-content rounded-full w-16">
-      <span className="text-xl">
-        {getInitials(props)}
+  <Fragment>
+    <div className="avatar placeholder p-4">
+      <div className="bg-neutral-focus text-neutral-content rounded-full w-16 mask mask-hexagon">
+        <span className="text-xl">
+          {getInitials(props)}
+        </span>
+      </div>
+    </div> 
+    <div>
+    <span className="text-sm pr-4">
+        {props.username}
       </span>
     </div>
-  </div> 
+  </Fragment>
 );
 
 export default Avatar;
