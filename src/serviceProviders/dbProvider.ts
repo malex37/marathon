@@ -41,7 +41,7 @@ export default class DbProvider {
 
       const results = await DbProvider.dbClient.send(getSprintsCommand);
       return results.Items?.map(item => {
-          return { name: item.sprint.S, team: item.team.S};
+          return { name: item.sprint.S, team: item.team.S, projectName: item.projectName.S, totalPoints: item.totalPoints.N, completedPoints: item.completedPoints.N};
       });
     }
 }
