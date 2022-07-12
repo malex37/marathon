@@ -30,7 +30,7 @@ export default class SprintStatsRow extends React.Component<SprintStatsRowProps,
         endDate={ this.props.sprintDateRange.endDate.toDateString() }
       />
       </td>
-      <td><a href={`/team?teamName=${this.props.teamName}`}>{this.props.teamName}</a></td>
+      <td><Link to={`/team?teamName=${this.props.teamName}`}>{this.props.teamName}</Link></td>
     </tr>
     );
   }
