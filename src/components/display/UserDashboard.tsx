@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { SprintModel } from "../../models/SprintModel";
 import DbProvider from "../../serviceProviders/dbProvider";
+import { logger } from "../../tools/logger";
 import SprintStatsRow from "./SprintStatsRow";
 
 /**
@@ -12,6 +14,7 @@ const UserDashboard = () => {
   let sprints: SprintModel[] | undefined;
 
   const [state, setState] = useState<SprintModel[] | undefined>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,6 +22,9 @@ const UserDashboard = () => {
     } 
     fetchData().then(data => {
       setState(data)
+    }).catch(error => {
+      logger.error(`Error fetching data ${JSON.stringify(error)}`);
+      navigate('/logout');
     });
   }, [sprints]);
 
@@ -52,26 +58,6 @@ const UserDashboard = () => {
                     />);
             })
           } 
-          {/* <SprintStatsRow
-            projectName="Lorem ipsum dolorh"
-            sprintName="Consectetur adipiscings"
-            sprintDateRange={{startDate: new Date('2022-01-01'), endDate: new Date('2022-01-15')}}
-            teamName="Elit"
-          />
-          
-          <SprintStatsRow
-            projectName="Sed dui nibh"
-            sprintName="Ultricies semper risus"
-            sprintDateRange={{startDate: new Date('2022-01-04'), endDate: new Date('2022-01-18')}}
-            teamName="Donec"
-          />
-          
-          <SprintStatsRow
-            projectName="Suspendisse pretium"
-            sprintName="Nunc tincidunt velit est"
-            sprintDateRange={{startDate: new Date('2022-02-01'), endDate: new Date('2022-02-08')}}
-            teamName="Mauris"
-          /> */}
         </tbody>
       </table>
     </div>

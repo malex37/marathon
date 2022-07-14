@@ -8,6 +8,10 @@ export function getToken(): string | undefined {
   return localStorage.getItem(AppConfig.identityTokenStorageKey) || undefined;
 }
 
+export function clearToken(): void {
+  localStorage.removeItem(AppConfig.identityTokenStorageKey);
+}
+
 export function checkAuth(): void { 
   if (!getToken() && !AppConfig.disableLoginForDevelopment) {
     console.log('No cognito token detected');

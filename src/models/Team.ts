@@ -1,3 +1,3 @@
 export interface Team {
-    members: string [];
+    members: string[];
 }
