@@ -6,6 +6,9 @@ class Logger {
   public info(message: string) {
     console.info(message);
   }
+  public error(message: string) {
+    console.error(message);
+  }
 }
 
 export const logger = new Logger();

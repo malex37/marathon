@@ -1,14 +1,14 @@
 import { CognitoIdentityProviderClient, GetUserCommand  } from  '@aws-sdk/client-cognito-identity-provider';
 import { AppConfig } from '../environment';
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
-import { getToken } from "../tools/AuthTools";
+import { AuthValidator } from "../tools/AuthTools";
 import { logger } from "../tools/logger";
 
 export default class CognitoProvider {
   private static cognitoClient: CognitoIdentityProviderClient;
 
   public static init() {
-    const identityToken = getToken();
+    const identityToken = AuthValidator.getToken();
     if (!identityToken) {
       throw Error('Failed to initialize client, no token present');
     }
@@ -30,7 +30,7 @@ export default class CognitoProvider {
   }
 
   public static async getUser() {
-    const getUserCommand = new GetUserCommand({AccessToken: getToken()});
+    const getUserCommand = new GetUserCommand({AccessToken: AuthValidator.getToken()});
     const res = await this.cognitoClient.send(getUserCommand);
     logger.info(`Got response ${JSON.stringify(res)}`);
   }

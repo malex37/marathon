@@ -33,7 +33,7 @@ export default class RegisterMember extends React.Component<{}, RegisterMemberFo
             return;
         }
         console.log(`Registering team member with name ${this.state.name}`);
-        team.members.push(this.state.name);
+        team.members?.push(this.state.name);
         localStorage.setItem('team', JSON.stringify(team));
         submitEvent.preventDefault();
     }

@@ -1,29 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AppConfig } from "../environment";
 import DbProvider from "../serviceProviders/dbProvider";
-import { setToken } from "../tools/AuthTools";
+import { AuthValidator } from "../tools/AuthTools";
 import { logger } from "../tools/logger";
 import CognitoProvider from '../serviceProviders/cognitoProvider';
+import { useNavigate } from "react-router-dom";
 
-export default class Login extends React.Component<{}, {}> {
-  componentDidMount() {
-    const cognitoToken = window.location.toString();
-    const startOfTokenParam = cognitoToken.indexOf("#id_token=");
-    const endPosition = cognitoToken.indexOf('&');
-    const token = cognitoToken.substring(startOfTokenParam + 10, endPosition);
+const Login = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const redirectURIWithParams = window.location.toString();
+    logger.debug(`window location on login ${redirectURIWithParams}`)
+    const startOfTokenParam = redirectURIWithParams.indexOf("#id_token=");
+    if (startOfTokenParam < 0) {
+      AuthValidator.checkAuth();
+    }
+    const endPosition = redirectURIWithParams.indexOf('&');
+    const token = redirectURIWithParams.substring(startOfTokenParam + 10, endPosition);
     logger.info(`Found token ${token}`);
     if (!token) {
       console.log('No cognito token detected');
       window.location.assign(AppConfig.loginUrl);
       return;
     }
-    setToken(token);
+    const startOfExpirationParam = redirectURIWithParams.indexOf('&expires_in=');
+    if (startOfExpirationParam < 0) {
+      AuthValidator.checkAuth();
+    }
+    const endOfExpirationParam = redirectURIWithParams.indexOf('&',startOfExpirationParam + 1);
+    const expirationParam = redirectURIWithParams.substring(startOfExpirationParam + 12, endOfExpirationParam);
+    AuthValidator.setToken(token);
+    AuthValidator.setLoginTime(Date.now());
+    AuthValidator.setTokenExpirationDate(parseInt(expirationParam));
     DbProvider.init();
     CognitoProvider.init();
-    CognitoProvider.getUser();
-  }
+    // CognitoProvider.getUser();
 
-  render() {
-    return <div></div>;
-  }
+    navigate('/');
+  });
+
+  return <div></div>;
 }
+
+export default Login;
