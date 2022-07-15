@@ -1,7 +1,7 @@
 import { DynamoDBClient, QueryCommand, ScanCommand } from "@aws-sdk/client-dynamodb"
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
 import { AppConfig } from "../environment";
-import { getToken } from "../tools/AuthTools";
+import { AuthValidator } from "../tools/AuthTools";
 import { logger } from "../tools/logger";
 import { SprintModel } from '../models/SprintModel';
 import { Team } from "../models/Team";
@@ -11,7 +11,7 @@ export default class DbProvider {
   private static dbClient: DynamoDBClient;
 
   public static init() {
-    const identityToken = getToken();
+    const identityToken = AuthValidator.getToken();
     if (!identityToken) {
       throw Error('Failed to initialize client, no token present');
     }

@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import Navbar from './display/Navbar';
 import Routes from '../Routes';
-import { checkAuth } from "../tools/AuthTools";
+import { AuthValidator } from "../tools/AuthTools";
 
 const Main = () => {
   useEffect(() => {
-    checkAuth();
+    AuthValidator.checkAuth();
   }, []);
 
   return (

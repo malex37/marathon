@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { clearToken } from "../tools/AuthTools";
+import { AuthValidator } from "../tools/AuthTools";
 
 const Logout = () => {
     useEffect(() => {
-        clearToken();
+        AuthValidator.clearAuthStorage();
     });
     return (<div></div>);
 }

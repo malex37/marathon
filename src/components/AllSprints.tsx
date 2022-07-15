@@ -1,12 +1,12 @@
 import { useEffect, useState, Fragment } from "react";
-import { checkAuth } from "../tools/AuthTools";
+import { AuthValidator } from "../tools/AuthTools";
 import DbProvider from "../serviceProviders/dbProvider";
 import { SprintModel } from "../models/SprintModel";
 
 const AllSprints = () => {
   const [state, setState] = useState<SprintModel[] | undefined>();
   useEffect(() => {
-    checkAuth();
+    AuthValidator.checkAuth();
 
     async function fetchSprints() {
       return await DbProvider.getSprints();

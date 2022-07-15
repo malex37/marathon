@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { checkAuth } from "../tools/AuthTools";
+import { AuthValidator } from "../tools/AuthTools";
 
 const Sprint = () => {
   useEffect(() => {
-    checkAuth();
+    AuthValidator.checkAuth();
   }, [])
 
   const { sprint } = useParams();
