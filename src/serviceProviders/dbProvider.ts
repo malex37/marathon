@@ -1,4 +1,4 @@
-import { BatchGetItemCommand, DynamoDBClient, QueryCommand, ScanCommand } from "@aws-sdk/client-dynamodb"
+import { DynamoDBClient, QueryCommand, ScanCommand } from "@aws-sdk/client-dynamodb"
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
 import { AppConfig } from "../environment";
 import { getToken } from "../tools/AuthTools";
@@ -67,12 +67,9 @@ export default class DbProvider {
       if (!results.Items && !results.Items) {
         return { members: [] }
       }
-        return results.Items.map((element) => {
-          if (element.members.SS) { 
-            return ({ members: element.members.SS} as Team);
-          }
-          return { members: [] };
-        });
+      const membs = results.Items.map(record => record.members.SS).flat();
+      logger.debug(`members are ${JSON.stringify(membs)}`);
+      return { members: membs };
     } catch (exception) {
       throw new Error('Failed dynamo db fetch')
     }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { SprintModel } from "../../models/SprintModel";
 import DbProvider from "../../serviceProviders/dbProvider";
 import { logger } from "../../tools/logger";

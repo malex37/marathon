@@ -3,10 +3,9 @@ import { Team as TeamInterface } from "../models/Team";
 import DbProvider from "../serviceProviders/dbProvider";
 import { logger } from "../tools/logger";
 import RegisterMember from "./RegisterMember";
-import { Team as TeamModel } from "../models/Team";
 
 interface TeamViewModel {
-  members?: TeamModel[];
+  members?: (string | undefined)[];
   teamName: string;
 }
 
@@ -24,7 +23,7 @@ const Team = () => {
         return await DbProvider.getTeam(teamNameString);
       };
       fetchTeamMembers().then(data => {
-        setState({teamName: teamNameString, members: data});
+        setState({teamName: teamNameString, members: data.members});
       })
     }
   }, []);
@@ -35,7 +34,9 @@ const Team = () => {
           {
             // this should also be a component that shows a preview of the team like icon and name
           }
-          {state?.members?.map()}
+          {state?.members?.map(member => {
+            return <div>{member}</div>;
+          })}
         </div>
         {
           // Should this be a different route? Maybe a modal?

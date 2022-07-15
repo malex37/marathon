@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { checkAuth } from "../tools/AuthTools";
-import DbProvider from "../serviceProviders/dbProvider";
 
 const Sprint = () => {
   useEffect(() => {

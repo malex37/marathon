@@ -1,4 +1,3 @@
-import { Component } from "react";
 import { useRoutes } from "react-router-dom";
 import AllSprints from "./components/AllSprints";
 import Login from "./components/Login";
