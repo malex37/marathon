@@ -1,17 +1,18 @@
-import React, { useEffect } from "react";
-import { AppConfig } from "../environment";
-import DbProvider from "../serviceProviders/dbProvider";
-import { AuthValidator } from "../tools/AuthTools";
-import { logger } from "../tools/logger";
+import { useEffect } from 'react';
+import { AppConfig } from '../environment';
+import DbProvider from '../serviceProviders/dbProvider';
+import { AuthValidator } from '../tools/AuthTools';
+import { logger } from '../tools/logger';
 import CognitoProvider from '../serviceProviders/cognitoProvider';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
+
   useEffect(() => {
     const redirectURIWithParams = window.location.toString();
-    logger.debug(`window location on login ${redirectURIWithParams}`)
-    const startOfTokenParam = redirectURIWithParams.indexOf("#id_token=");
+    logger.debug(`window location on login ${redirectURIWithParams}`);
+    const startOfTokenParam = redirectURIWithParams.indexOf('#id_token=');
     if (startOfTokenParam < 0) {
       AuthValidator.checkAuth();
     }
@@ -39,7 +40,7 @@ const Login = () => {
     navigate('/');
   });
 
-  return <div></div>;
-}
+  return <></>;
+};
 
 export default Login;

@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
 export type AvatarProps = {
     firstName?: string;
@@ -15,7 +15,7 @@ const getInitials = ({ firstName, lastName, username }: AvatarProps) => {
   } else {
     return username.substring(0, 1);
   }
-}
+};
 
 const Avatar = (props: AvatarProps) => (
   <Fragment>
@@ -27,7 +27,7 @@ const Avatar = (props: AvatarProps) => (
       </div>
     </div> 
     <div>
-    <span className="text-sm pr-4">
+      <span className="text-sm pr-4">
         {props.username}
       </span>
     </div>

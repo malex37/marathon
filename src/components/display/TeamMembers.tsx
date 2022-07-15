@@ -1,6 +1,3 @@
-import React from "react";
-export default class TeamMembers extends React.Component<{}, {}> {
-  render() {
-    return <div></div>
-  }
-}
+const TeamMembers = () => <div></div>;
+
+export default TeamMembers;

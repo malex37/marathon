@@ -22,4 +22,4 @@ export const AppConfig: Environment = {
   disableLoginForDevelopment: false,
   expirationTimeKey: 'expirationTime',
   loginTimeKey: 'loginTime',
-}
+};

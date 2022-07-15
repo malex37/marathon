@@ -1,11 +1,11 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { AuthValidator } from "../tools/AuthTools";
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { AuthValidator } from '../tools/AuthTools';
 
 const Sprint = () => {
   useEffect(() => {
     AuthValidator.checkAuth();
-  }, [])
+  }, []);
 
   const { sprint } = useParams();
 
@@ -13,7 +13,7 @@ const Sprint = () => {
     <div>
       {sprint}
     </div>
-  )
-}
+  );
+};
 
 export default Sprint;

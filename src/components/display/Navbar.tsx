@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import { routesConfig } from "../../Routes";
-import Avatar from "./Avatar";
+import { Link } from 'react-router-dom';
+import { routesConfig } from '../../Routes';
+import Avatar from './Avatar';
 
 const links = routesConfig.filter(({ isNavLinkVisible }) => isNavLinkVisible);
 

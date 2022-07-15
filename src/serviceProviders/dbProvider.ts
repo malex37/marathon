@@ -1,10 +1,10 @@
-import { DynamoDBClient, QueryCommand, ScanCommand } from "@aws-sdk/client-dynamodb"
-import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
-import { AppConfig } from "../environment";
-import { AuthValidator } from "../tools/AuthTools";
-import { logger } from "../tools/logger";
+import { DynamoDBClient, QueryCommand, ScanCommand } from '@aws-sdk/client-dynamodb';
+import { fromCognitoIdentityPool } from '@aws-sdk/credential-providers';
+import { AppConfig } from '../environment';
+import { AuthValidator } from '../tools/AuthTools';
+import { logger } from '../tools/logger';
 import { SprintModel } from '../models/SprintModel';
-import { Team } from "../models/Team";
+import { Team } from '../models/Team';
 
 
 export default class DbProvider {
@@ -56,22 +56,22 @@ export default class DbProvider {
     }
     try {
       const getTeamCommand: QueryCommand = new QueryCommand({
-        KeyConditionExpression: "#team_name = :inputName",
+        KeyConditionExpression: '#team_name = :inputName',
         TableName: 'sprint-teams',
         ExpressionAttributeValues: {
-          ":inputName": { S: teamName }
+          ':inputName': { S: teamName }
         },
-        ExpressionAttributeNames: {"#team_name": "name"}
+        ExpressionAttributeNames: {'#team_name': 'name'}
       });
       const results = await DbProvider.dbClient.send(getTeamCommand);
       if (!results.Items && !results.Items) {
-        return { members: [] }
+        return { members: [] };
       }
       const membs = results.Items.map(record => record.members.SS).flat();
       logger.debug(`members are ${JSON.stringify(membs)}`);
       return { members: membs };
     } catch (exception) {
-      throw new Error('Failed dynamo db fetch')
+      throw new Error('Failed dynamo db fetch');
     }
   }
 }

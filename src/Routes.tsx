@@ -1,15 +1,15 @@
-import { useRoutes } from "react-router-dom";
-import AllSprints from "./components/AllSprints";
-import Login from "./components/Login";
-import Logout from "./components/Logout";
-import Sprint from "./components/Sprint";
-import Stats from "./components/Stats";
-import Team from "./components/Team";
+import { useRoutes, RouteObject } from 'react-router-dom';
+import AllSprints from './components/AllSprints';
+import Login from './components/Login';
+import Logout from './components/Logout';
+import Sprint from './components/Sprint';
+import Stats from './components/Stats';
+import Team from './components/Team';
 
 interface Route {
   path: string;
-  element?: any;
-  children?: any[]
+  element?: React.ReactNode;
+  children?: RouteObject[];
   navLinkName: string;
   isNavLinkVisible: boolean;
 }
@@ -60,7 +60,7 @@ const Routes = () => {
   const routes = useRoutes(routesConfig);
 
   return routes;
-}
+};
 
-export { routesConfig }
-export default Routes
+export { routesConfig };
+export default Routes;

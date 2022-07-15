@@ -1,5 +1,5 @@
-import { CognitoIdentityProviderClient } from "@aws-sdk/client-cognito-identity-provider";
-import { AppConfig } from "../environment";
+import { CognitoIdentityProviderClient } from '@aws-sdk/client-cognito-identity-provider';
+import { AppConfig } from '../environment';
 
 class CredentialsProvider {
 
