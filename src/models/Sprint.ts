@@ -1,4 +1,4 @@
 export default class SprintModel {
-    sprintName?: string;
-    teamName?: string []
+  sprintName?: string;
+  teamName?: string [];
 }

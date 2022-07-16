@@ -1,7 +1,7 @@
-import { useEffect, useState, Fragment } from "react";
-import { AuthValidator } from "../tools/AuthTools";
-import DbProvider from "../serviceProviders/dbProvider";
-import { SprintModel } from "../models/SprintModel";
+import { useEffect, useState, Fragment } from 'react';
+import { AuthValidator } from '../tools/AuthTools';
+import DbProvider from '../serviceProviders/dbProvider';
+import { SprintModel } from '../models/SprintModel';
 
 const AllSprints = () => {
   const [state, setState] = useState<SprintModel[] | undefined>();
@@ -15,7 +15,7 @@ const AllSprints = () => {
     fetchSprints().then(data => {
       setState(data);
     });
- }, [])
+  }, []);
 
   return (
     <div>
@@ -26,10 +26,10 @@ const AllSprints = () => {
             <div>Sprint Name: {sprint.name}</div>
             <div>team name: {sprint.team}</div>
           </Fragment>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
 export default AllSprints;

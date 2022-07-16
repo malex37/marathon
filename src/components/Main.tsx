@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 import Navbar from './display/Navbar';
 import Routes from '../Routes';
-import { AuthValidator } from "../tools/AuthTools";
+import { AuthValidator } from '../tools/AuthTools';
 
 const Main = () => {
   useEffect(() => {
@@ -14,6 +14,6 @@ const Main = () => {
       <Routes />
     </div>
   );
-}
+};
 
 export default Main;

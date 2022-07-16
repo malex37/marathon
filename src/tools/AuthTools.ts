@@ -1,15 +1,15 @@
-import { AppConfig } from "../environment";
-import { logger } from "./logger";
+import { AppConfig } from '../environment';
+import { logger } from './logger';
 
 export class AuthValidator {
   public static setToken(token: string): void {
-    console.log('setToken')
+    console.log('setToken');
     localStorage.setItem(AppConfig.identityTokenStorageKey, token);
   }
 
   public static getToken(): string | undefined {
-    console.log('getToken')
-    const value = this.getStorageValue(AppConfig.identityTokenStorageKey)
+    console.log('getToken');
+    const value = this.getStorageValue(AppConfig.identityTokenStorageKey);
     if (!value) {
       return undefined;
     } else {
@@ -18,20 +18,20 @@ export class AuthValidator {
   }
 
   public static clearAuthStorage(): void {
-    console.log('clearing auth storage')
+    console.log('clearing auth storage');
     localStorage.removeItem(AppConfig.identityTokenStorageKey);
     localStorage.removeItem(AppConfig.loginTimeKey);
     localStorage.removeItem(AppConfig.expirationTimeKey);
   }
 
   public static setTokenExpirationDate(expiration: number): void {
-    console.log('setTokenExpirationDate')
+    console.log('setTokenExpirationDate');
     const expirationDate = Date.now() + expiration;
-    localStorage.setItem(AppConfig.expirationTimeKey, expirationDate.toString())
+    localStorage.setItem(AppConfig.expirationTimeKey, expirationDate.toString());
   }
 
   private static getStorageValue(key: string): string | undefined {
-    console.log('setTokenExpirationDate')
+    console.log('setTokenExpirationDate');
     const value = localStorage.getItem(key);
     if (!value) {
       // throw new Error(`No value for key ${key}!`);
@@ -41,13 +41,13 @@ export class AuthValidator {
   }
 
   public static setLoginTime(loginTime: number): void {
-    console.log('setLoginTime')
+    console.log('setLoginTime');
     localStorage.setItem(AppConfig.loginTimeKey, loginTime.toString());
   }
 
   public static getLoginTime(): number {
-    console.log('getLoginTime')
-    const value = this.getStorageValue(AppConfig.loginTimeKey)
+    console.log('getLoginTime');
+    const value = this.getStorageValue(AppConfig.loginTimeKey);
     if (!value) {
       logger.error('No value found for login time');
       return 0;
@@ -57,7 +57,7 @@ export class AuthValidator {
   }
 
   public static getExpirationDate(): number {
-    console.log('getExpirationDate')
+    console.log('getExpirationDate');
     const value = this.getStorageValue(AppConfig.expirationTimeKey);
     if (!value) {
       logger.error('no value for expiration date');
@@ -68,7 +68,7 @@ export class AuthValidator {
   }
 
   public static checkAuth(): void {
-    console.log('checkAuth')
+    console.log('checkAuth');
     const checkTime = Date.now();
     if (!this.getToken() || AppConfig.disableLoginForDevelopment || this.getExpirationDate() < checkTime) {
       console.log('No cognito token detected');
