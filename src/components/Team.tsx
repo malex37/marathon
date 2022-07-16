@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
-import DbProvider from '../serviceProviders/dbProvider';
-import { logger } from '../tools/logger';
-import RegisterMember from './RegisterMember';
+import { useEffect, useState } from "react";
+import DbProvider from "../serviceProviders/dbProvider";
+import { logger } from "../tools/logger";
+import TeamMember from "./display/TeamMember";
+import RegisterMember from "./RegisterMember";
 
 interface TeamViewModel {
   members?: (string | undefined)[];
@@ -29,19 +30,13 @@ const Team = () => {
   return (
     <div>
       <h1 className="text-lg">{state?.teamName}</h1>
-      <div>
-        {
-          // this should also be a component that shows a preview of the team like icon and name
-        }
-        {state?.members?.map((member, index) => {
-          return <div key={index}>{member}</div>;
-        })}
-      </div>
-      {
-        // Should this be a different route? Maybe a modal?
-      }
+          {state?.members?.map(member => {
+            if (member)
+            return <TeamMember name={member} />
+          })}
       <RegisterMember />
-    </div>);
+    </div>
+   );
 };
 
 export default Team;

@@ -24,7 +24,6 @@ const UserDashboard = () => {
       setState(data);
     }).catch(error => {
       logger.error(`Error fetching data ${JSON.stringify(error)}`);
-      navigate('/logout');
     });
   }, [sprints]);
 
