@@ -26,7 +26,8 @@ export class AuthValidator {
 
   public static setTokenExpirationDate(expiration: number): void {
     console.log('setTokenExpirationDate');
-    const expirationDate = Date.now() + expiration;
+    // expiration is returned in secondsm but Date.now() is ms
+    const expirationDate = Date.now() + (expiration * 1000);
     localStorage.setItem(AppConfig.expirationTimeKey, expirationDate.toString());
   }
 
@@ -70,8 +71,20 @@ export class AuthValidator {
   public static checkAuth(): void {
     console.log('checkAuth');
     const checkTime = Date.now();
-    if (!this.getToken() || AppConfig.disableLoginForDevelopment || this.getExpirationDate() < checkTime) {
-      console.log('No cognito token detected');
+    let requiresReLogin = false;
+    if (!this.getToken()) {
+      logger.debug('No identity token detected');
+      requiresReLogin = true;
+    }
+    if (AppConfig.disableLoginForDevelopment) {
+      logger.debug('development sign in is not disabled redirecting');
+      requiresReLogin = true;
+    }
+    if (this.getExpirationDate() < checkTime) {
+      logger.debug('token is expired, loging out');
+      requiresReLogin = true;
+    }
+    if (requiresReLogin) {
       window.location.assign(AppConfig.loginUrl);
     }
   }

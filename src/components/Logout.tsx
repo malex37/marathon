@@ -7,10 +7,12 @@ const Logout = () => {
   const navigate = useNavigate();
   useEffect(() => {
     AuthValidator.clearAuthStorage();
-    window.location.assign(AppConfig.loginUrl);
+    AuthValidator.checkAuth();
   });
 
-  return <div></div>;
+  return (
+    <div>Loging you out</div>
+  );
 };
 
 export default Logout;
