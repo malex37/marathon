@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import DbProvider from "../serviceProviders/dbProvider";
-import { logger } from "../tools/logger";
-import TeamMember from "./display/TeamMember";
-import RegisterMember from "./RegisterMember";
+import { useEffect, useState } from 'react';
+import DbProvider from '../serviceProviders/dbProvider';
+import { logger } from '../tools/logger';
+import TeamMember from './display/TeamMember';
+import RegisterMember from './RegisterMember';
 
 interface TeamViewModel {
   members?: (string | undefined)[];
@@ -29,14 +29,15 @@ const Team = () => {
   }, []);
   return (
     <div>
-      <h1 className="text-lg">{state?.teamName}</h1>
-          {state?.members?.map(member => {
-            if (member)
-            return <TeamMember name={member} />
-          })}
+      <h1 className='text-lg'>{state?.teamName}</h1>
+      {state?.members?.map(member => {
+        if (member) {
+          return <TeamMember name={member} />;
+        }
+      })}
       <RegisterMember />
     </div>
-   );
+  );
 };
 
 export default Team;
