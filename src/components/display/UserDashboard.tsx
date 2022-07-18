@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { SprintModel } from '../../models/SprintModel';
 import DbProvider from '../../serviceProviders/dbProvider';
 import { logger } from '../../tools/logger';
@@ -14,7 +13,6 @@ const UserDashboard = () => {
   let sprints: SprintModel[] | undefined;
 
   const [state, setState] = useState<SprintModel[] | undefined>();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
