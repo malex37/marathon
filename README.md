@@ -28,7 +28,7 @@ Once this last step is completed there will be a data abstraction layer to provi
 # Using
 - React (duh)
 - AWS Cognito
-- tailwind css
-  - DaisyUI
+- [tailwind css](https://tailwindcss.com/)
+- [DaisyUI](https://daisyui.com/) <img src=https://daisyui.com/favicon.ico width=20>
 - Dreams ✨
 - Imagination 🌈
