@@ -5,6 +5,7 @@ import Logout from './components/Logout';
 import Sprint from './components/Sprint';
 import Stats from './components/Stats';
 import Team from './components/Team';
+import Loading from './components/utilities/Loading';
 
 interface Route {
   path: string;
@@ -53,6 +54,12 @@ const routesConfig: Route[] = [
     element: <Logout />,
     navLinkName: 'Logout',
     isNavLinkVisible: false,
+  },
+  {
+    path: '/load',
+    element: <Loading />,
+    navLinkName: 'Loading',
+    isNavLinkVisible: true,
   }
 ];
 

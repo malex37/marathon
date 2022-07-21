@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { SprintModel } from '../../models/SprintModel';
 import DbProvider from '../../serviceProviders/dbProvider';
 import { logger } from '../../tools/logger';
+import Loading from '../utilities/Loading';
 import SprintStatsRow from './SprintStatsRow';
 
 /**
@@ -23,10 +24,9 @@ const UserDashboard = () => {
     }).catch(error => {
       logger.error(`Error fetching data ${JSON.stringify(error)}`);
     });
-  }, [sprints]);
+  }, [state]);
 
-
-  return(
+  const table = (
     <div className="overflow-x-auto center">
       <table className="table w-half">
         { 
@@ -59,6 +59,9 @@ const UserDashboard = () => {
       </table>
     </div>
   );
+  const comp = !state ? <Loading />  : table;
+
+  return comp;
 };
 
 export default UserDashboard;

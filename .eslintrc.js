@@ -28,8 +28,7 @@ module.exports = {
   },
   rules: {
     indent: ['error', 2],
-    // ['error', 'unix'] is incompatible with developers working on windows
-    'linebreak-style': 0,
+    'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'always']
   }
