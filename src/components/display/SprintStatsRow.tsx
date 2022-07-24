@@ -27,7 +27,7 @@ const SprintStatsRow = (props: SprintStatsRowProps) => {
           endDate={props.sprintDateRange.endDate.toDateString()}
         />
       </td>
-      <td><Link to={`/team?teamName=${props.teamName}`}>{props.teamName}</Link></td>
+      <td><Link to={`/team/${props.teamName}`}>{props.teamName}</Link></td>
       <td>
         <div
           className="radial-progress"

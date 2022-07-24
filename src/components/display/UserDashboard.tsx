@@ -12,19 +12,22 @@ import SprintStatsRow from './SprintStatsRow';
 const UserDashboard = () => {
 
   let sprints: SprintModel[] | undefined;
-
+  let initiated = false;
   const [state, setState] = useState<SprintModel[] | undefined>();
 
   useEffect(() => {
     const fetchData = async () => {
       return await DbProvider.getSprints();
-    }; 
-    fetchData().then(data => {
-      setState(data);
-    }).catch(error => {
-      logger.error(`Error fetching data ${JSON.stringify(error)}`);
-    });
-  }, [state]);
+    };
+    if (!initiated) { 
+      initiated = true;
+      fetchData().then(data => {
+        setState(data);
+      }).catch(error => {
+        logger.error(`Error fetching data ${JSON.stringify(error)}`);
+      });
+    }
+  }, []);
 
   const table = (
     <div className="overflow-x-auto center">
