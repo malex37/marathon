@@ -16,18 +16,20 @@ export default class DbProvider {
       throw Error('Failed to initialize client, no token present');
     }
     const loginMapKey = `cognito-idp.${AppConfig.awsRegion}.amazonaws.com/${AppConfig.userPoolId}`;
-    logger.info(`Initializing client with identityPoolId: ${AppConfig.identityPoolId}. IdentityToken: ${identityToken} and loginMapKey ${loginMapKey}`);
+    logger.info(`Initializing client with identiyPoolId: ${AppConfig.identityPoolId}. IdentityToken: ${identityToken} and loginMapKey ${loginMapKey}`);
+    const identityPoolCredentials = fromCognitoIdentityPool({
+      identityPoolId: AppConfig.identityPoolId,
+      logins: {
+        'cognito-idp.us-east-1.amazonaws.com/us-east-1_FU9OU6fgv': identityToken,
+      },
+      clientConfig: {
+        region: AppConfig.awsRegion,
+      },
+    });
+    // AuthValidator.setIdentityPoolCredentials(identityPoolCredentials);
     DbProvider.dbClient = new DynamoDBClient({
       region: 'us-west-2',
-      credentials: fromCognitoIdentityPool({
-        identityPoolId: AppConfig.identityPoolId,
-        logins: {
-          'cognito-idp.us-east-1.amazonaws.com/us-east-1_FU9OU6fgv': identityToken,
-        },
-        clientConfig: {
-          region: AppConfig.awsRegion,
-        }
-      }),
+      credentials: identityPoolCredentials,
     });
   }
 
