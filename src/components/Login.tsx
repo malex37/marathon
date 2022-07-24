@@ -35,7 +35,7 @@ const Login = () => {
     AuthValidator.setTokenExpirationDate(parseInt(expirationParam));
     DbProvider.init();
     CognitoProvider.init();
-    // CognitoProvider.getUser();
+    CognitoProvider.getUser();
 
     navigate('/');
   });

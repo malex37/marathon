@@ -30,7 +30,9 @@ export default class CognitoProvider {
   }
 
   public static async getUser() {
-    const getUserCommand = new GetUserCommand({AccessToken: AuthValidator.getToken()});
+    const accessToken = AuthValidator.getToken();
+    logger.debug(`token: ${accessToken}` || 'No token');
+    const getUserCommand = new GetUserCommand({AccessToken: accessToken});
     const res = await this.cognitoClient.send(getUserCommand);
     logger.info(`Got response ${JSON.stringify(res)}`);
   }

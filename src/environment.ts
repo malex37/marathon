@@ -9,6 +9,7 @@ interface Environment {
   disableLoginForDevelopment: boolean;
   expirationTimeKey: string;
   loginTimeKey: string;
+  identityPoolCredentialsKey: string;
 }
 
 export const AppConfig: Environment = {
@@ -22,4 +23,5 @@ export const AppConfig: Environment = {
   disableLoginForDevelopment: false,
   expirationTimeKey: 'expirationTime',
   loginTimeKey: 'loginTime',
+  identityPoolCredentialsKey: 'indentityPoolCredentials',
 };

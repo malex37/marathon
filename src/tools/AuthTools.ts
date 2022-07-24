@@ -88,6 +88,12 @@ export class AuthValidator {
       window.location.assign(AppConfig.loginUrl);
     }
   }
+
+  public static setIdentityPoolCredentials(credentials: any) {
+    const stringifiedCredentials = JSON.stringify(credentials);
+    logger.debug(`Setting credentials to local storage ${stringifiedCredentials}`);
+    localStorage.setItem(AppConfig.identityPoolCredentialsKey, stringifiedCredentials);
+  }
 }
 
 export const AuthChecker = new AuthValidator();

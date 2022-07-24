@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import DbProvider from '../serviceProviders/dbProvider';
+import { AuthValidator } from '../tools/AuthTools';
 import { logger } from '../tools/logger';
 import TeamMember from './display/TeamMember';
 import RegisterMember from './RegisterMember';
@@ -13,26 +15,28 @@ const Team = () => {
 
   const [state, setState] = useState<TeamViewModel | undefined>();
 
+  const init = false;
+  const { team } = useParams();
   useEffect(() => {
-    const url = new URLSearchParams(window.location.search);
-    const teamNameString = url.get('teamName');
-    logger.debug(`Retrieved teamName ${teamNameString}`);
-    if (teamNameString) {
-      
-      const fetchTeamMembers = async () => {
-        return await DbProvider.getTeam(teamNameString);
-      };
-      fetchTeamMembers().then(data => {
-        setState({teamName: teamNameString, members: data.members});
-      });
+    if (!init) {
+      logger.debug(`Retrieved teamName ${team}`);
+      if (team) {
+
+        const fetchTeamMembers = async () => {
+          return await DbProvider.getTeam(team);
+        };
+        fetchTeamMembers().then(data => {
+          setState({ teamName: team, members: data.members });
+        });
+      }
     }
   }, []);
   return (
     <div>
       <h1 className='text-lg'>{state?.teamName}</h1>
-      {state?.members?.map(member => {
+      {state?.members?.map((member, index) => {
         if (member) {
-          return <TeamMember name={member} />;
+          return <TeamMember key={index} name={member} />;
         }
       })}
       <RegisterMember />

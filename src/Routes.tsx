@@ -45,7 +45,12 @@ const routesConfig: Route[] = [
   },
   {
     path: '/team',
-    element: <Team />,
+    children: [
+      {
+        path: ':team',
+        element: <Team />,
+      }
+    ],
     navLinkName: 'Team',
     isNavLinkVisible: true,
   },
