@@ -13,8 +13,8 @@ interface Environment {
 }
 
 export const AppConfig: Environment = {
-  loginUrl: 'https://marathon.auth.us-east-1.amazoncognito.com/login?response_type=token&client_id=b230eteev0qvv3r73ufhv4o3b&redirect_uri=http://localhost:3000/login&scope=openid+profile+email',
-  redirectUri : 'http://localhost:3000',
+  loginUrl: 'https://marathon.auth.us-east-1.amazoncognito.com/login?response_type=token&client_id=b230eteev0qvv3r73ufhv4o3b&redirect_uri=https://main.dos9m91pfwetk.amplifyapp.com/login&scope=openid+profile+email',
+  redirectUri : 'https://main.dos9m91pfwetk.amplifyapp.com/',
   identityPoolId: 'us-east-1:e4f5c242-c421-4d05-bef1-7e95a1218a31',
   userPoolId:'us-east-1_FU9OU6fgv',
   identityClient: '54p2e979phpou3em40hvmiq4l3',
